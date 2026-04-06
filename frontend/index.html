@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alumni System</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <h2 style="text-align:center;">Loading...</h2>
+
+<script>
+    const SUPABASE_URL = "https://ebhbpaxdpifelnxixgfy.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImViaGJwYXhkcGlmZWxueGl4Z2Z5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUyNTE3NzksImV4cCI6MjA5MDgyNzc3OX0.H6NTHRDu0HMXBBNbQjg2uJGnxqJbPqJYNWBlTpn00Eo";
+
+    const { createClient } = supabase;
+    const client = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    async function checkSession() {
+        const { data, error } = await client.auth.getSession();
+
+        if (data.session) {
+            // sudah login
+            window.location.href = "dashboard.html";
+        } else {
+            // belum login
+            window.location.href = "login.html";
+        }
+    }
+
+    checkSession();
+</script>
+
+</body>
+</html>
